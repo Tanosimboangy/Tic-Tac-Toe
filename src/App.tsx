@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 import styled from 'styled-components'
-import HomePage from './HomePage'
+import { Homepage } from './features/Homepage/Homepage'
 import { Dashboard } from './features/Dashboard/Dashboard'
 
 const Container = styled.article`
@@ -30,12 +30,13 @@ const Title = styled.h1`
     line-height: 32px;
   }
 `
+
 function App() {
   return (
     <div className='App'>
       <Container>
         <Title>Tic tac toe</Title>
-        <HomePage />
+        <Homepage />
         <Dashboard />
       </Container>
     </div>

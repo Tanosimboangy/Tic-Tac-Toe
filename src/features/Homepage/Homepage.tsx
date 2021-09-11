@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import './App.css'
+import React from 'react'
 import styled from 'styled-components'
-import Round from './icons/round.svg'
-import Cross from './icons/cross.svg'
+import Round from '../../icons/round.svg'
+import Cross from '../../icons/cross.svg'
+import { useAppSelector, useAppDispatch } from '../../app/hooks'
+import { firstPlayer, secondPlayer, selectDashboard } from './homepageSlice'
 
 const Wrapper = styled.aside`
   display: flex;
@@ -76,17 +77,19 @@ const StartBtn = styled.button`
   }
 `
 
-function HomePage() {
-  const [firstPlayerName, setFirstPlayerName] = useState('')
-  const [secondPlayerName, setSecondPlayerName] = useState('')
+export function Homepage() {
+  const dispatch = useAppDispatch()
+  const dashboard = useAppSelector(selectDashboard)
+
+  console.log(dashboard)
+
   return (
     <Wrapper>
       <Frame>
         <Icon src={Round} alt='round-icon' />
         <Input
           type='text'
-          value={firstPlayerName}
-          onChange={(e) => setFirstPlayerName(e.target.value)}
+          onChange={(e) => dispatch(firstPlayer(e.target.value))}
           placeholder='Leave empty to use AI or enter player name'
         />
       </Frame>
@@ -94,15 +97,12 @@ function HomePage() {
         <Icon src={Cross} alt='cross-icon' />
         <Input
           type='text'
-          value={secondPlayerName}
-          onChange={(e) => setSecondPlayerName(e.target.value)}
+          onChange={(e: any) => dispatch(secondPlayer(e.target.value))}
           placeholder='Leave empty to use AI or enter player name'
         />
       </Frame>
       <Time>Turn time limit in seconds: </Time>
-      <StartBtn>Start</StartBtn>
+      <StartBtn type='button'>Start</StartBtn>
     </Wrapper>
   )
 }
-
-export default HomePage

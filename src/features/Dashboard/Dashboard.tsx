@@ -1,53 +1,51 @@
-import React, { useState } from 'react'
+import React from 'react'
+import styled from 'styled-components'
+// import { useAppSelector, useAppDispatch } from '../../app/hooks'
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks'
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-  incrementAsync,
-  incrementIfOdd,
-  selectCount,
-} from './dashboardSlice'
+const Wrapper = styled.aside`
+  display: grid;
+  grid-auto-columns: max-content;
+  align-self: center;
+`
+const Frame = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`
+
+const BoradBtn = styled.button`
+  outline: none;
+  cursor: pointer;
+  padding: 25px;
+  background: white;
+  width: max-content;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: #000000;
+  border: 1px solid gray;
+`
 
 export function Dashboard() {
-  const count = useAppSelector(selectCount)
-  const dispatch = useAppDispatch()
-  const [incrementAmount, setIncrementAmount] = useState('2')
-
-  const incrementValue = Number(incrementAmount) || 0
+  //   const dispatch = useAppDispatch()
+  //   const dashboard = useAppSelector(selectDashboard)
 
   return (
-    <div>
-      <div>
-        <button
-          aria-label='Decrement value'
-          onClick={() => dispatch(decrement())}>
-          -
-        </button>
-        <span>{count}</span>
-        <button
-          aria-label='Increment value'
-          onClick={() => dispatch(increment())}>
-          +
-        </button>
-      </div>
-      <div>
-        <input
-          aria-label='Set increment amount'
-          value={incrementAmount}
-          onChange={(e) => setIncrementAmount(e.target.value)}
-        />
-        <button onClick={() => dispatch(incrementByAmount(incrementValue))}>
-          Add Amount
-        </button>
-        <button onClick={() => dispatch(incrementAsync(incrementValue))}>
-          Add Async
-        </button>
-        <button onClick={() => dispatch(incrementIfOdd(incrementValue))}>
-          Add If Odd
-        </button>
-      </div>
-    </div>
+    <Wrapper>
+      <Frame>
+        <BoradBtn></BoradBtn>
+        <BoradBtn></BoradBtn>
+        <BoradBtn></BoradBtn>
+      </Frame>
+      <Frame>
+        <BoradBtn></BoradBtn>
+        <BoradBtn></BoradBtn>
+        <BoradBtn></BoradBtn>
+      </Frame>
+      <Frame>
+        <BoradBtn></BoradBtn>
+        <BoradBtn></BoradBtn>
+        <BoradBtn></BoradBtn>
+      </Frame>
+    </Wrapper>
   )
 }
