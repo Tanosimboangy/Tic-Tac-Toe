@@ -8,7 +8,7 @@ import {
   incrementAsync,
   incrementIfOdd,
   selectCount,
-} from './counterSlice'
+} from './dashboardSlice'
 import styles from './Counter.module.css'
 
 export function Counter() {
