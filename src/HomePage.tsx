@@ -58,6 +58,23 @@ const Time = styled.p`
     padding: 16px 10px 16px 80px;
   }
 `
+const StartBtn = styled.button`
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  background: white;
+  border-radius: 4px;
+  width: max-content;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: #000000;
+  align-self: center;
+  :hover {
+    box-shadow: 1px 2px 4px gray;
+  }
+`
 
 function HomePage() {
   const [firstPlayerName, setFirstPlayerName] = useState('')
@@ -83,6 +100,7 @@ function HomePage() {
         />
       </Frame>
       <Time>Turn time limit in seconds: </Time>
+      <StartBtn>Start</StartBtn>
     </Wrapper>
   )
 }
