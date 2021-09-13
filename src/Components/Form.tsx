@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from '../app/hooks'
 import { firstPlayer, secondPlayer, selectDashboard } from '../Slices/HomeSlice'
 import { Frame, Icon, Input } from '../Styles/HomePage'
 
-export function AddPlayersForm() {
+export function Form() {
   const dispatch = useAppDispatch()
   const dashboard = useAppSelector(selectDashboard)
   console.log(dashboard)

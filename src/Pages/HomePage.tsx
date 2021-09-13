@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { AddPlayersForm } from '../Components/AddPlayersForm'
+import { Form } from '../Components/Form'
 import { useAppSelector } from '../app/hooks'
 import { selectDashboard } from '../Slices/HomeSlice'
 import {
@@ -28,7 +28,7 @@ export function HomePage() {
 
   return (
     <Wrapper>
-      <AddPlayersForm />
+      <Form />
       <Time>
         <TimeText>Turn time limit in seconds:</TimeText>
         <TimeValue
