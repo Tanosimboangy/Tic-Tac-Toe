@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Round from '../../icons/round.svg'
 import Cross from '../../icons/cross.svg'
+import { Link } from 'react-router-dom'
 import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import { firstPlayer, secondPlayer, selectDashboard } from './homepageSlice'
 
@@ -9,6 +10,7 @@ const Wrapper = styled.aside`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin: 103px 0px 0px 0px;
 `
 const Frame = styled.div`
   position: relative;
@@ -46,18 +48,40 @@ const Input = styled.input`
     }
   }
 `
-const Time = styled.p`
+const Time = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 37px;
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+`
+const TimeText = styled.span`
   font-size: 24px;
   line-height: 24px;
   text-align: left;
-  padding: 16px 10px 16px 80px;
   color: #000000;
   margin: 0;
+  margin-right: 4px;
+  white-space: nowrap;
   @media (max-width: 760px) {
     font-size: 18px;
     line-height: 18px;
-    padding: 16px 10px 16px 80px;
+    padding: 16px 0px 16px 0px;
   }
+`
+const TimeValue = styled.input`
+  background: white;
+  border-radius: 5px;
+  font-size: 20px;
+  line-height: 20px;
+  max-width: 40px;
 `
 const StartBtn = styled.button`
   outline: none;
@@ -79,9 +103,17 @@ const StartBtn = styled.button`
 
 export function Homepage() {
   const dispatch = useAppDispatch()
-  const dashboard = useAppSelector(selectDashboard)
-
-  console.log(dashboard)
+  const [timeValue, setTimeValue] = React.useState(60)
+  // const dashboard = useAppSelector(selectDashboard)
+  function TimeCountDown() {
+    console.log(timeValue)
+    // const timeLimit =
+    //   timeValue > 0 && setInterval(() => setTimeValue(timeValue - 1), 1000)
+    // return () => clearInterval(timeLimit)
+  }
+  React.useEffect(() => {
+    // TimeCountDown()
+  }, [timeValue])
 
   return (
     <Wrapper>
@@ -101,8 +133,19 @@ export function Homepage() {
           placeholder='Leave empty to use AI or enter player name'
         />
       </Frame>
-      <Time>Turn time limit in seconds: </Time>
-      <StartBtn type='button'>Start</StartBtn>
+      <Time>
+        <TimeText>Turn time limit in seconds:</TimeText>
+        <TimeValue
+          value={timeValue}
+          type='number'
+          onChange={(e: any) => setTimeValue(e.target.value)}
+        />
+      </Time>
+      <Link to='/dashboard'>
+        <StartBtn onClick={TimeCountDown} type='button'>
+          Start
+        </StartBtn>
+      </Link>
     </Wrapper>
   )
 }
