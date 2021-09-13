@@ -9,8 +9,8 @@ const BoardContainer = styled.div`
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
   gap: 4px;
+  margin-bottom: 30px;
 `
-
 export interface InputProps {
   squares?: any
   onClick?: any

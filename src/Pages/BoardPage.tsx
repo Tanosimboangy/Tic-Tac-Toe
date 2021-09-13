@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { calculateWinner } from '../helper'
 import Board from './Board'
+import { calculateWinner } from '../helper'
 import styled from 'styled-components'
 
 const Container = styled.aside`
@@ -19,33 +19,6 @@ const SubTitle = styled.p`
   color: #000000;
   margin: 0px 0px 50px 0px;
 `
-// const Wrapper = styled.div`
-//   display: grid;
-//   grid-auto-columns: max-content;
-//   align-self: center;
-//   margin: 0px 0px 68px 0px;
-// `
-// const Frame = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(3, 1fr);
-//   button:nth-child(2) {
-//     border-left: 4px solid #4a4444;
-//     border-right: 4px solid #4a4444;
-//   }
-//   :nth-child(2) {
-//     border-top: 4px solid #4a4444;
-//     border-bottom: 4px solid #4a4444;
-//   }
-// `
-// const BoradBtn = styled.button`
-//   padding: 25px;
-//   background: white;
-//   width: max-content;
-//   font-size: 24px;
-//   line-height: 24px;
-//   text-align: center;
-//   color: #000000;
-// `
 const RestartBtn = styled.button`
   padding: 16px 20px;
   background: white;
@@ -104,21 +77,3 @@ export function BoardPage() {
     </Container>
   )
 }
-
-/* <Wrapper>
-        <Frame>
-          <BoradBtn></BoradBtn>
-          <BoradBtn></BoradBtn>
-          <BoradBtn></BoradBtn>
-        </Frame>
-        <Frame>
-          <BoradBtn></BoradBtn>
-          <BoradBtn></BoradBtn>
-          <BoradBtn></BoradBtn>
-        </Frame>
-        <Frame>
-          <BoradBtn></BoradBtn>
-          <BoradBtn></BoradBtn>
-          <BoradBtn></BoradBtn>
-        </Frame>
-      </Wrapper> */

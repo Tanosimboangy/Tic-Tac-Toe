@@ -3,15 +3,8 @@ import styled from 'styled-components'
 import Round from '../icons/round.svg'
 import Cross from '../icons/cross.svg'
 import { Link } from 'react-router-dom'
-import {
-  // useAppSelector,
-  useAppDispatch,
-} from '../app/hooks'
-import {
-  firstPlayer,
-  secondPlayer,
-  // selectDashboard,
-} from '../Components/Home/homeSlice'
+import { useAppDispatch } from '../app/hooks'
+import { firstPlayer, secondPlayer } from '../Components/Home/homeSlice'
 
 const Wrapper = styled.aside`
   display: flex;

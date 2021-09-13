@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
 import Round from '../icons/round.svg'
 import Cross from '../icons/cross.svg'
 import { Link } from 'react-router-dom'
-import {
-  // useAppSelector,
-  useAppDispatch,
-} from '../app/hooks'
+import styled from 'styled-components'
+import { useAppSelector, useAppDispatch } from '../app/hooks'
 import {
   firstPlayer,
   secondPlayer,
-  // selectDashboard,
+  selectDashboard,
 } from '../Components/Home/homeSlice'
 
 const Wrapper = styled.aside`
@@ -111,9 +108,10 @@ const StartBtn = styled.button`
 export function HomePage() {
   const dispatch = useAppDispatch()
   const [timeValue, setTimeValue] = useState(60)
-  // const dashboard = useAppSelector(selectDashboard)
+  const dashboard = useAppSelector(selectDashboard)
+  console.log(dashboard)
+
   function TimeCountDown() {
-    console.log(timeValue)
     // const timeLimit =
     //   timeValue > 0 && setInterval(() => setTimeValue(timeValue - 1), 1000)
     // return () => clearInterval(timeLimit)
