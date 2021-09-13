@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import Board from './Board'
+import React, { useState, useEffect } from 'react'
+import Board from '../Components/Board'
 import { calculateWinner } from '../helper'
 import styled from 'styled-components'
 import {
   useAppSelector,
   // useAppDispatch
 } from '../app/hooks'
-import { selectDashboard } from '../Components/Home/homeSlice'
+import { selectDashboard } from '../Slices/HomeSlice'
+import { Time, TimeText, TimeValue } from '../Styles/HomePage'
 
 const Container = styled.aside`
   display: flex;
@@ -37,6 +38,7 @@ const RestartBtn = styled.button`
 `
 
 export function BoardPage() {
+  const [timeValue, setTimeValue] = useState(6)
   const dashboard = useAppSelector(selectDashboard)
   const FirstPlayerName = dashboard.player1
   const SecondPlayerName = dashboard.player2
@@ -62,28 +64,34 @@ export function BoardPage() {
   const Turn = clickBoard === 'X' ? FirstPlayerName : SecondPlayerName
   const Winner = winner === 'X' ? FirstPlayerName : SecondPlayerName
 
+  function TimeCountDown() {
+    console.log(timeValue)
+    // const timeLimit =
+    //   timeValue > 0 && setInterval(() => setTimeValue(timeValue - 1), 1000)
+    // return () => clearInterval(timeLimit)
+  }
+  useEffect(() => {
+    // TimeCountDown()
+  }, [timeValue])
+
+  console.log(TimeCountDown)
+
   return (
     <Container>
       <SubTitle>
         {winner === null ? `${Turn}'s turn'` : `${Winner} won`}
       </SubTitle>
       <Board squares={history[stepNumber]} onClick={handleClick} />
-      <RestartBtn onClick={() => setStepNumber(0)}>Restart</RestartBtn>
+      <Time>
+        <TimeText>Time left:</TimeText>
+        <TimeValue
+          value={timeValue}
+          type='number'
+          onChange={(e: any) => setTimeValue(e.target.value)}
+        />
+      </Time>
+
+      {/* <RestartBtn onClick={() => setStepNumber(0)}>Restart</RestartBtn> */}
     </Container>
   )
 }
-
-// const jumpTo = (step: any) => {
-//   setStepNumber(step)
-//   setXisNext(step % 2 === 0)
-// }
-
-// const renderMoves = () =>
-//   history.map((_step, move) => {
-//     const destination = move ? `Go to move #${move}` : 'Go to Start'
-//     return (
-//       <li key={move}>
-//         <button onClick={() => jumpTo(move)}>{destination}</button>
-//       </li>
-//     )
-//   })

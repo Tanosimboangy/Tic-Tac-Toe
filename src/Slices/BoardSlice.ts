@@ -1,6 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from '../../app/store'
-import { fetchCount } from './boardAPI'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from '../app/store'
 
 export interface CounterState {
   value: {
@@ -15,13 +14,6 @@ const initialState: CounterState = {
     player2: '',
   },
 }
-export const incrementAsync = createAsyncThunk(
-  'counter/fetchCount',
-  async (amount: any) => {
-    const response = await fetchCount(amount)
-    return response.data
-  }
-)
 
 export const dashbordSlice = createSlice({
   name: 'counter',
@@ -33,11 +25,6 @@ export const dashbordSlice = createSlice({
     secondPlayer: (state, action: PayloadAction<any>) => {
       state.value.player2 = action.payload
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(incrementAsync.fulfilled, (state, action) => {
-      state.value.player1 = action.payload
-    })
   },
 })
 

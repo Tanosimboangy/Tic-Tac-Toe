@@ -4,7 +4,7 @@ import Round from '../icons/round.svg'
 import Cross from '../icons/cross.svg'
 import { Link } from 'react-router-dom'
 import { useAppDispatch } from '../app/hooks'
-import { firstPlayer, secondPlayer } from '../Components/Home/homeSlice'
+import { firstPlayer, secondPlayer } from '../Slices/HomeSlice'
 
 const Wrapper = styled.aside`
   display: flex;
