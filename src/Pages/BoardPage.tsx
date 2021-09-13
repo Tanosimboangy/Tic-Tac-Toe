@@ -40,8 +40,6 @@ const RestartBtn = styled.button`
 export function BoardPage() {
   const [timeValue, setTimeValue] = useState(6)
   const dashboard = useAppSelector(selectDashboard)
-  const FirstPlayerName = dashboard.player1
-  const SecondPlayerName = dashboard.player2
   const [history, setHistory] = useState([Array(9).fill(null)])
   const [stepNumber, setStepNumber] = useState(0)
   const [xIsNext, setXisNext] = useState(true)
@@ -61,8 +59,8 @@ export function BoardPage() {
     setXisNext(!xIsNext)
   }
 
-  const Turn = clickBoard === 'X' ? FirstPlayerName : SecondPlayerName
-  const Winner = winner === 'X' ? FirstPlayerName : SecondPlayerName
+  const Turn = clickBoard === 'X' ? dashboard.player1 : dashboard.player2
+  const Winner = winner === 'X' ? dashboard.player1 : dashboard.player2
 
   function TimeCountDown() {
     console.log(timeValue)
@@ -73,8 +71,6 @@ export function BoardPage() {
   useEffect(() => {
     // TimeCountDown()
   }, [timeValue])
-
-  console.log(TimeCountDown)
 
   return (
     <Container>
@@ -90,7 +86,6 @@ export function BoardPage() {
           onChange={(e: any) => setTimeValue(e.target.value)}
         />
       </Time>
-
       {/* <RestartBtn onClick={() => setStepNumber(0)}>Restart</RestartBtn> */}
     </Container>
   )
