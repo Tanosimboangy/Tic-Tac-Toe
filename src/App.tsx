@@ -2,8 +2,9 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './App.css'
 import styled from 'styled-components'
-import { Homepage } from './components/Homepage/Homepage'
-import { Dashboard } from './components/Dashboard/Dashboard'
+import { HomePage } from './Pages/HomePage'
+import { BoardPage } from './Pages/BoardPage'
+// import { RebootPage } from './Pages/RebootPage'
 
 const Container = styled.article`
   font-family: Usuazi Hosomozi;
@@ -38,11 +39,14 @@ function App() {
         <Router>
           <Switch>
             <Route exact path='/'>
-              <Homepage />
+              <HomePage />
             </Route>
             <Route exact path='/dashboard'>
-              <Dashboard />
+              <BoardPage />
             </Route>
+            {/* <Route exact path='/reboot'>
+              <RebootPage />
+            </Route> */}
           </Switch>
         </Router>
       </Container>

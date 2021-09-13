@@ -58,7 +58,7 @@ const RestartBtn = styled.button`
   }
 `
 
-export function Dashboard() {
+export function BoardPage() {
   //   const dispatch = useAppDispatch()
   //   const dashboard = useAppSelector(selectDashboard)
 

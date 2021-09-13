@@ -1,11 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
-import counterReducer from '../components/counter/counterSlice'
-import dashboardReducer from '../components/Homepage/homepageSlice'
+import counterReducer from '../Components/counter/counterSlice'
+import boardReducer from '../Components/Home/homeSlice'
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
-    dashboard: dashboardReducer,
+    board: boardReducer,
   },
 })
 

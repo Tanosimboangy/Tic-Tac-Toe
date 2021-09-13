@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import Round from '../../icons/round.svg'
-import Cross from '../../icons/cross.svg'
+import Round from '../icons/round.svg'
+import Cross from '../icons/cross.svg'
 import { Link } from 'react-router-dom'
-import { useAppSelector, useAppDispatch } from '../../app/hooks'
-import { firstPlayer, secondPlayer, selectDashboard } from './homepageSlice'
+import { useAppSelector, useAppDispatch } from '../app/hooks'
+import {
+  firstPlayer,
+  secondPlayer,
+  selectDashboard,
+} from '../Components/Home/homeSlice'
 
 const Wrapper = styled.aside`
   display: flex;
@@ -101,9 +105,9 @@ const StartBtn = styled.button`
   }
 `
 
-export function Homepage() {
+export function HomePage() {
   const dispatch = useAppDispatch()
-  const [timeValue, setTimeValue] = React.useState(60)
+  const [timeValue, setTimeValue] = useState(60)
   // const dashboard = useAppSelector(selectDashboard)
   function TimeCountDown() {
     console.log(timeValue)
@@ -111,7 +115,7 @@ export function Homepage() {
     //   timeValue > 0 && setInterval(() => setTimeValue(timeValue - 1), 1000)
     // return () => clearInterval(timeLimit)
   }
-  React.useEffect(() => {
+  useEffect(() => {
     // TimeCountDown()
   }, [timeValue])
 
