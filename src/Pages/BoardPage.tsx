@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 import Board from './Board'
 import { calculateWinner } from '../helper'
 import styled from 'styled-components'
+import {
+  useAppSelector,
+  // useAppDispatch
+} from '../app/hooks'
+import { selectDashboard } from '../Components/Home/homeSlice'
 
 const Container = styled.aside`
   display: flex;
@@ -9,8 +14,7 @@ const Container = styled.aside`
   align-items: center;
   margin: 48px 0px 0px 0px;
 `
-const SubTitle = styled.p`
-  font-family: Usuazi Hosomozi;
+const SubTitle = styled.h3`
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
@@ -33,11 +37,14 @@ const RestartBtn = styled.button`
 `
 
 export function BoardPage() {
+  const dashboard = useAppSelector(selectDashboard)
+  const FirstPlayerName = dashboard.player1
+  const SecondPlayerName = dashboard.player2
   const [history, setHistory] = useState([Array(9).fill(null)])
   const [stepNumber, setStepNumber] = useState(0)
   const [xIsNext, setXisNext] = useState(true)
   const winner = calculateWinner(history[stepNumber])
-  const xO = xIsNext ? 'X' : 'O'
+  const clickBoard = xIsNext ? 'X' : 'O'
 
   const handleClick = (i: any) => {
     const historyPoint = history.slice(0, stepNumber + 1)
@@ -46,34 +53,37 @@ export function BoardPage() {
     // return if won or occupied
     if (winner || squares[i]) return
     // select square
-    squares[i] = xO
+    squares[i] = clickBoard
     setHistory([...historyPoint, squares])
     setStepNumber(historyPoint.length)
     setXisNext(!xIsNext)
   }
 
-  // const jumpTo = (step: any) => {
-  //   setStepNumber(step)
-  //   setXisNext(step % 2 === 0)
-  // }
-
-  // const renderMoves = () =>
-  //   history.map((_step, move) => {
-  //     const destination = move ? `Go to move #${move}` : 'Go to Start'
-  //     return (
-  //       <li key={move}>
-  //         <button onClick={() => jumpTo(move)}>{destination}</button>
-  //       </li>
-  //     )
-  //   })
-
-  // console.log(renderMoves())
+  const Turn = clickBoard === 'X' ? FirstPlayerName : SecondPlayerName
+  const Winner = winner === 'X' ? FirstPlayerName : SecondPlayerName
 
   return (
     <Container>
-      <SubTitle>Time out - won</SubTitle>
+      <SubTitle>
+        {winner === null ? `${Turn}'s turn'` : `${Winner} won`}
+      </SubTitle>
       <Board squares={history[stepNumber]} onClick={handleClick} />
       <RestartBtn onClick={() => setStepNumber(0)}>Restart</RestartBtn>
     </Container>
   )
 }
+
+// const jumpTo = (step: any) => {
+//   setStepNumber(step)
+//   setXisNext(step % 2 === 0)
+// }
+
+// const renderMoves = () =>
+//   history.map((_step, move) => {
+//     const destination = move ? `Go to move #${move}` : 'Go to Start'
+//     return (
+//       <li key={move}>
+//         <button onClick={() => jumpTo(move)}>{destination}</button>
+//       </li>
+//     )
+//   })

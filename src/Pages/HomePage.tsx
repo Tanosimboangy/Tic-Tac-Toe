@@ -109,7 +109,6 @@ export function HomePage() {
   const dispatch = useAppDispatch()
   const [timeValue, setTimeValue] = useState(60)
   const dashboard = useAppSelector(selectDashboard)
-  console.log(dashboard)
 
   function TimeCountDown() {
     // const timeLimit =
