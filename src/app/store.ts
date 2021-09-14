@@ -1,11 +1,15 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
+import playersReducer from '../Slices/playersSlice'
+import boardReducer from '../Slices/boardSlice'
+import timeReducer from '../Slices/timeSlice'
 import counterReducer from '../Components/counter/counterSlice'
-import boardReducer from '../Slices/HomeSlice'
 
 export const store = configureStore({
   reducer: {
+    players: playersReducer,
     counter: counterReducer,
     board: boardReducer,
+    time: timeReducer,
   },
 })
 

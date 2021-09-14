@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Form } from '../Components/Form'
-import { useAppSelector } from '../app/hooks'
-import { selectDashboard } from '../Slices/HomeSlice'
+import { selectPlayers } from '../Slices/playersSlice'
+import { selectTime, timeLimit } from '../Slices/timeSlice'
+import { useAppSelector, useAppDispatch } from '../app/hooks'
 import {
   Wrapper,
   Time,
@@ -12,17 +13,17 @@ import {
 } from '../Styles/HomePage'
 
 export function HomePage() {
-  const [timeValue, setTimeValue] = useState(6)
-  const dashboard = useAppSelector(selectDashboard)
+  const dispatch = useAppDispatch()
+  const time = useAppSelector(selectTime)
+  const dashboard = useAppSelector(selectPlayers)
 
   function TimeCountDown() {
-    // const timeLimit =
-    //   timeValue > 0 && setInterval(() => setTimeValue(timeValue - 1), 1000)
+    // const timeLimit = time.timeRestriction > 0 && setInterval(() => timeLimit(timeValue - 1), 1000))
     // return () => clearInterval(timeLimit)
   }
   useEffect(() => {
     // TimeCountDown()
-  }, [timeValue])
+  }, [time])
 
   return (
     <Wrapper>
@@ -30,9 +31,9 @@ export function HomePage() {
       <Time>
         <TimeText>Turn time limit in seconds:</TimeText>
         <TimeValue
-          value={timeValue}
           type='number'
-          onChange={(e: any) => setTimeValue(e.target.value)}
+          value={time.timeRestriction}
+          onChange={(e: any) => dispatch(timeLimit(e.target.value))}
         />
       </Time>
       <Link to='/dashboard'>
