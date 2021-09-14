@@ -8,7 +8,6 @@ import { Frame, Icon, Input } from '../Styles/HomePage'
 export function Form() {
   const dispatch = useAppDispatch()
   const dashboard = useAppSelector(selectDashboard)
-  console.log(dashboard)
 
   return (
     <>

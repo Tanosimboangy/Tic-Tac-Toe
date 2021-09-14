@@ -14,10 +14,8 @@ import {
 export function HomePage() {
   const [timeValue, setTimeValue] = useState(6)
   const dashboard = useAppSelector(selectDashboard)
-  console.log(dashboard)
 
   function TimeCountDown() {
-    console.log(timeValue)
     // const timeLimit =
     //   timeValue > 0 && setInterval(() => setTimeValue(timeValue - 1), 1000)
     // return () => clearInterval(timeLimit)
