@@ -46,7 +46,7 @@ export const PlayerScore = styled.span`
   font-size: 24px;
   line-height: 24px;
   position: absolute;
-  left: 55px;
+  left: 48px;
   top: 18px;
   @media (max-width: 760px) {
     top: 13px;
