@@ -2,28 +2,28 @@ import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../app/store'
 
 export interface PlayersScoreState {
-  playerScore1: any
-  playerScore2: any
+  firstPlayer: number
+  secondPlayer: number
 }
 
 const initialState: PlayersScoreState = {
-  playerScore1: '',
-  playerScore2: '',
+  firstPlayer: 0,
+  secondPlayer: 0,
 }
 
 export const playersScoreSlice = createSlice({
   name: 'playersScore',
   initialState,
   reducers: {
-    firstPlayer: (state) => {
-      state.playerScore1 += 1
+    firstPlayerScore: (state) => {
+      state.firstPlayer += 1
     },
-    secondPlayer: (state) => {
-      state.playerScore1 += 1
+    secondPlayerScore: (state) => {
+      state.secondPlayer += 1
     },
   },
 })
 
-export const { firstPlayer, secondPlayer } = playersScoreSlice.actions
+export const { firstPlayerScore, secondPlayerScore } = playersScoreSlice.actions
 export const selectPlayersScore = (state: RootState) => state.playersScore
 export default playersScoreSlice.reducer

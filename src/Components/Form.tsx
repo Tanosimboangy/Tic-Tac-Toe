@@ -1,22 +1,29 @@
 import React from 'react'
 import Round from '../Icons/round.svg'
 import Cross from '../Icons/cross.svg'
-import { Frame, Icon, Input } from '../Styles/HomePage'
+import { Frame, Icon, Input, PlayerScore } from '../Styles/HomePage'
 import { useAppSelector, useAppDispatch } from '../app/hooks'
 import {
   firstPlayer,
   secondPlayer,
   selectPlayers,
 } from '../Slices/playersSlice'
+import { selectPlayersScore } from '../Slices/playersScoreSlice'
 
 export function Form() {
   const dispatch = useAppDispatch()
   const dashboard = useAppSelector(selectPlayers)
+  const playerScore = useAppSelector(selectPlayersScore)
+
+  console.log(playerScore)
 
   return (
     <>
       <Frame>
         <Icon src={Round} alt='round-icon' />
+        <PlayerScore>
+          {dashboard.player1 && playerScore.firstPlayer}
+        </PlayerScore>
         <Input
           type='text'
           value={dashboard.player1}
@@ -26,6 +33,9 @@ export function Form() {
       </Frame>
       <Frame>
         <Icon src={Cross} alt='cross-icon' />
+        <PlayerScore>
+          {dashboard.player2 && playerScore.secondPlayer}
+        </PlayerScore>
         <Input
           type='text'
           value={dashboard.player2}

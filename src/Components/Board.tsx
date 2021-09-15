@@ -1,6 +1,15 @@
 import React from 'react'
-import Square from './Square'
 import styled from 'styled-components'
+
+export interface SquaresProps {
+  value?: any
+  onClick?: any
+}
+
+export interface InputProps {
+  squares?: any
+  onClick?: any
+}
 
 const BoardContainer = styled.div`
   background: #4a4444;
@@ -11,15 +20,20 @@ const BoardContainer = styled.div`
   gap: 4px;
   margin-bottom: 30px;
 `
-export interface InputProps {
-  squares?: any
-  onClick?: any
-}
+const SquareBtn = styled.button<SquaresProps>`
+  padding: 0;
+  font-size: 80px;
+  font-weight: 800;
+  background: white;
+  color: ${(props) => (props.value === 'X' ? 'red' : 'green')};
+`
 
 const Board: React.FC<InputProps> = ({ squares, onClick }) => (
   <BoardContainer>
     {squares.map((square: any, i: any) => (
-      <Square key={i} value={square} onClick={() => onClick(i)} />
+      <SquareBtn key={i} onClick={() => onClick(i)}>
+        {square}
+      </SquareBtn>
     ))}
   </BoardContainer>
 )

@@ -6,8 +6,12 @@ import { selectTime } from '../Slices/timeSlice'
 import { selectPlayers } from '../Slices/playersSlice'
 import { useAppSelector, useAppDispatch } from '../app/hooks'
 import { Time, TimeText, TimeValue } from '../Styles/HomePage'
-import { selectBoard, updatingStateHistory } from '../Slices/boardSlice'
 import { Container, SubTitle, RestartBtn } from '../Styles/BoardPage'
+import { selectBoard } from '../Slices/boardSlice'
+import {
+  firstPlayerScore,
+  secondPlayerScore,
+} from '../Slices/playersScoreSlice'
 
 export function BoardPage() {
   const dispatch = useAppDispatch()
@@ -15,39 +19,35 @@ export function BoardPage() {
   const time = useAppSelector(selectTime)
   const dashboard = useAppSelector(selectPlayers)
 
-  // const [history, setHistory] = useState([Array(9).fill(null)])
-  // const [stepNumber, setStepNumber] = useState(0)
-  // const [xIsNext, setXisNext] = useState(true)
-  // const winner = calculateWinner(history[stepNumber])
-  // const xO = xIsNext ? 'X' : 'O'
-
-  const winner = board.board.winner
-  const squares = board.board.squares
-  const xO = board.board.xO
-  const history = board.board.history
-  const stepNumber = board.board.stepNumber
+  const [historyState, setHistoryState] = useState(board.board.history)
+  const [step, setStep] = useState(board.board.stepNumber)
+  const [xNext, setXNext] = useState(board.board.xIsNext)
+  const win = calculateWinner(historyState[step])
+  const XO = xNext ? 'X' : 'O'
 
   const handleClick = (i: any) => {
-    // const historyPoint = history.slice(0, stepNumber + 1)
-    // const current = historyPoint[stepNumber]
-    // const squares = [...current]
-    // if (winner || squares[i]) return
-    squares[i] = xO
-    // setHistory([...historyPoint, squares])
-    // setStepNumber(historyPoint.length)
-    // setXisNext(!xIsNext)
-    dispatch(updatingStateHistory())
+    const historyPoint = historyState.slice(0, step + 1)
+    const current = historyPoint[step]
+    const squares = [...current]
+    if (win || squares[i]) return
+    squares[i] = XO
+    setStep(historyPoint.length)
+    setXNext(!xNext)
+    setHistoryState([...historyPoint, squares])
+  }
+  if (win === 'X') {
+    dispatch(firstPlayerScore())
+  } else if (win === 'O') {
+    dispatch(secondPlayerScore())
   }
 
-  const Turn = xO === 'X' ? dashboard.player1 : dashboard.player2
-  const Winner = winner === 'X' ? dashboard.player1 : dashboard.player2
+  const Turn = XO === 'X' ? dashboard.player1 : dashboard.player2
+  const Winner = win === 'X' ? dashboard.player1 : dashboard.player2
 
   return (
     <Container>
-      <SubTitle>
-        {winner === null ? `${Turn}'s turn'` : `${Winner} won`}
-      </SubTitle>
-      <Board squares={history[stepNumber]} onClick={handleClick} />
+      <SubTitle>{win === null ? `${Turn}'s turn'` : `${Winner} won`}</SubTitle>
+      <Board squares={historyState[step]} onClick={handleClick} />
       {time.timeRestriction === 0 ? (
         ''
       ) : (

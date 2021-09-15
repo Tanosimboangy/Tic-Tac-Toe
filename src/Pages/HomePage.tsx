@@ -10,13 +10,13 @@ import {
   TimeText,
   TimeValue,
   StartBtn,
+  TimeUnit,
 } from '../Styles/HomePage'
 
 export function HomePage() {
   const dispatch = useAppDispatch()
   const time = useAppSelector(selectTime)
   const dashboard = useAppSelector(selectPlayers)
-  console.log(dashboard)
 
   function TimeCountDown() {
     // const timeSet = time.timeRestriction > 0 && setInterval(() => timeLimit(time.timeRestriction - 1), 1000))
@@ -36,6 +36,7 @@ export function HomePage() {
           value={time.timeRestriction}
           onChange={(e: any) => dispatch(timeLimit(e.target.value))}
         />
+        <TimeUnit>s</TimeUnit>
       </Time>
       <Link to='/dashboard'>
         <StartBtn onClick={TimeCountDown} type='button'>

@@ -13,7 +13,7 @@ export const Icon = styled.img`
   width: 30px;
   height: 30px;
   position: absolute;
-  top: 15px;
+  top: 10px;
   left: 10px;
 `
 export const Input = styled.input`
@@ -40,6 +40,16 @@ export const Input = styled.input`
       font-size: 18px;
       line-height: 18px;
     }
+  }
+`
+export const PlayerScore = styled.span`
+  font-size: 24px;
+  line-height: 24px;
+  position: absolute;
+  left: 55px;
+  top: 18px;
+  @media (max-width: 760px) {
+    top: 13px;
   }
 `
 export const Time = styled.div`
@@ -75,7 +85,15 @@ export const TimeValue = styled.input`
   border-radius: 5px;
   font-size: 20px;
   line-height: 20px;
-  max-width: 40px;
+  max-width: 24px;
+`
+export const TimeUnit = styled.span`
+  font-size: 24px;
+  line-height: 24px;
+  @media (max-width: 760px) {
+    font-size: 18px;
+    line-height: 18px;
+  }
 `
 export const StartBtn = styled.button`
   outline: none;
