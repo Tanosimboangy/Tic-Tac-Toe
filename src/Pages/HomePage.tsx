@@ -19,12 +19,15 @@ export function HomePage() {
   const dashboard = useAppSelector(selectPlayers)
 
   function TimeCountDown() {
-    // const timeSet = time.timeRestriction > 0 && setInterval(() => timeLimit(time.timeRestriction - 1), 1000))
-    // return () => clearInterval(timeSet)
+    let timer = 0
+    clearInterval(timer)
+    var clearTimer = setInterval(() => {
+      // dispatch(tick())
+      if (time.timeRestriction >= 5) {
+        clearInterval(clearTimer)
+      }
+    }, 1000)
   }
-  useEffect(() => {
-    // TimeCountDown()
-  }, [time])
 
   return (
     <Wrapper>
@@ -46,3 +49,9 @@ export function HomePage() {
     </Wrapper>
   )
 }
+
+// const timeSet = time.timeRestriction > 0 && setInterval(() => timeLimit(time.timeRestriction - 1), 1000))
+// return () => clearInterval(timeSet)
+// useEffect(() => {
+//   // TimeCountDown()
+// }, [time])
