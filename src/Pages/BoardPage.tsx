@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Board from '../Components/Board'
+import { Link } from 'react-router-dom'
 import { calculateWinner } from '../helper'
 import { selectTime } from '../Slices/timeSlice'
 import { selectPlayers } from '../Slices/playersSlice'
@@ -14,21 +15,27 @@ export function BoardPage() {
   const time = useAppSelector(selectTime)
   const dashboard = useAppSelector(selectPlayers)
 
-  const [history, setHistory] = useState([Array(9).fill(null)])
-  const [stepNumber, setStepNumber] = useState(0)
-  const [xIsNext, setXisNext] = useState(true)
-  const winner = calculateWinner(history[stepNumber])
-  const xO = xIsNext ? 'X' : 'O'
+  // const [history, setHistory] = useState([Array(9).fill(null)])
+  // const [stepNumber, setStepNumber] = useState(0)
+  // const [xIsNext, setXisNext] = useState(true)
+  // const winner = calculateWinner(history[stepNumber])
+  // const xO = xIsNext ? 'X' : 'O'
+
+  const winner = board.board.winner
+  const squares = board.board.squares
+  const xO = board.board.xO
+  const history = board.board.history
+  const stepNumber = board.board.stepNumber
 
   const handleClick = (i: any) => {
-    const historyPoint = history.slice(0, stepNumber + 1)
-    const current = historyPoint[stepNumber]
-    const squares = [...current]
-    if (winner || squares[i]) return
+    // const historyPoint = history.slice(0, stepNumber + 1)
+    // const current = historyPoint[stepNumber]
+    // const squares = [...current]
+    // if (winner || squares[i]) return
     squares[i] = xO
-    setHistory([...historyPoint, squares])
-    setStepNumber(historyPoint.length)
-    setXisNext(!xIsNext)
+    // setHistory([...historyPoint, squares])
+    // setStepNumber(historyPoint.length)
+    // setXisNext(!xIsNext)
     dispatch(updatingStateHistory())
   }
 
@@ -41,17 +48,21 @@ export function BoardPage() {
         {winner === null ? `${Turn}'s turn'` : `${Winner} won`}
       </SubTitle>
       <Board squares={history[stepNumber]} onClick={handleClick} />
-      <Time>
-        <TimeText>Time left:</TimeText>
-        <TimeValue
-          value={time.timeRestriction}
-          type='number'
-          onChange={() => ''}
-        />
-      </Time>
-      {/* <RestartBtn onClick={() => dispatch(updatingStateHistory())}>
-        Restart
-      </RestartBtn> */}
+      {time.timeRestriction === 0 ? (
+        ''
+      ) : (
+        <Time>
+          <TimeText>Time left:</TimeText>
+          <TimeValue
+            type='number'
+            onChange={() => ''}
+            value={time.timeRestriction}
+          />
+        </Time>
+      )}
+      <Link to='/'>
+        <RestartBtn>Restart</RestartBtn>
+      </Link>
     </Container>
   )
 }

@@ -16,10 +16,11 @@ export function HomePage() {
   const dispatch = useAppDispatch()
   const time = useAppSelector(selectTime)
   const dashboard = useAppSelector(selectPlayers)
+  console.log(dashboard)
 
   function TimeCountDown() {
-    // const timeLimit = time.timeRestriction > 0 && setInterval(() => timeLimit(timeValue - 1), 1000))
-    // return () => clearInterval(timeLimit)
+    // const timeSet = time.timeRestriction > 0 && setInterval(() => timeLimit(time.timeRestriction - 1), 1000))
+    // return () => clearInterval(timeSet)
   }
   useEffect(() => {
     // TimeCountDown()
