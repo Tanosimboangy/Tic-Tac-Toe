@@ -15,8 +15,6 @@ export function Form() {
   const dashboard = useAppSelector(selectPlayers)
   const playerScore = useAppSelector(selectPlayersScore)
 
-  console.log(playerScore)
-
   return (
     <>
       <Frame>

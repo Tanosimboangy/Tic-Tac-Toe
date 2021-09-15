@@ -5,23 +5,19 @@ import { calculateWinner } from '../helper'
 // history: Array<any>
 
 export interface BoardState {
-  board: {
-    history: any
-    stepNumber: any
-    xIsNext: any
-    xO: any
-    winner: any
-  }
+  history: any
+  stepNumber: any
+  xIsNext: any
+  winner: any
+  xO: any
 }
 
 const initialState: BoardState = {
-  board: {
-    history: [Array(9).fill(null)],
-    stepNumber: 0,
-    xIsNext: true,
-    winner: '',
-    xO: '',
-  },
+  history: [Array(9).fill(null)],
+  stepNumber: 0,
+  xIsNext: true,
+  winner: '',
+  xO: '',
 }
 
 export const boardSlice = createSlice({

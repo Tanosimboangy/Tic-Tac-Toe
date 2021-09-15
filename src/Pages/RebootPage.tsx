@@ -3,6 +3,7 @@ import Round from '../icons/round.svg'
 import Cross from '../icons/cross.svg'
 import { Link } from 'react-router-dom'
 import { useAppDispatch } from '../app/hooks'
+import { TimeUnit } from '../Styles/HomePage'
 import { firstPlayer, secondPlayer } from '../Slices/playersSlice'
 import {
   Wrapper,
@@ -43,6 +44,7 @@ export function RebootPage() {
           type='number'
           onChange={(e: any) => setTimeValue(e.target.value)}
         />
+        <TimeUnit>s</TimeUnit>
       </Time>
       <BtnContainer>
         <Link to='/dashboard'>

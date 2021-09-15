@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Board from '../Components/Board'
 import { Link } from 'react-router-dom'
+import { TimeUnit } from '../Styles/HomePage'
 import { calculateWinner } from '../helper'
 import { selectTime } from '../Slices/timeSlice'
+import { selectBoard } from '../Slices/boardSlice'
 import { selectPlayers } from '../Slices/playersSlice'
 import { useAppSelector, useAppDispatch } from '../app/hooks'
 import { Time, TimeText, TimeValue } from '../Styles/HomePage'
 import { Container, SubTitle, RestartBtn } from '../Styles/BoardPage'
-import { selectBoard } from '../Slices/boardSlice'
 import {
   firstPlayerScore,
   secondPlayerScore,
@@ -19,9 +20,9 @@ export function BoardPage() {
   const time = useAppSelector(selectTime)
   const dashboard = useAppSelector(selectPlayers)
 
-  const [historyState, setHistoryState] = useState(board.board.history)
-  const [step, setStep] = useState(board.board.stepNumber)
-  const [xNext, setXNext] = useState(board.board.xIsNext)
+  const [historyState, setHistoryState] = useState(board.history)
+  const [step, setStep] = useState(board.stepNumber)
+  const [xNext, setXNext] = useState(board.xIsNext)
   const win = calculateWinner(historyState[step])
   const XO = xNext ? 'X' : 'O'
 
@@ -35,11 +36,14 @@ export function BoardPage() {
     setXNext(!xNext)
     setHistoryState([...historyPoint, squares])
   }
-  if (win === 'X') {
-    dispatch(firstPlayerScore())
-  } else if (win === 'O') {
-    dispatch(secondPlayerScore())
-  }
+
+  useEffect(() => {
+    if (win === 'X') {
+      dispatch(firstPlayerScore())
+    } else if (win === 'O') {
+      dispatch(secondPlayerScore())
+    }
+  }, [win])
 
   const Turn = XO === 'X' ? dashboard.player1 : dashboard.player2
   const Winner = win === 'X' ? dashboard.player1 : dashboard.player2
@@ -58,6 +62,7 @@ export function BoardPage() {
             onChange={() => ''}
             value={time.timeRestriction}
           />
+          <TimeUnit>s</TimeUnit>
         </Time>
       )}
       <Link to='/'>
