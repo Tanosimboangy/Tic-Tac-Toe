@@ -13,8 +13,11 @@ export const Icon = styled.img`
   width: 30px;
   height: 30px;
   position: absolute;
-  top: 10px;
+  top: 14px;
   left: 10px;
+  @media (max-width: 760px) {
+    top: 10px;
+  }
 `
 export const Input = styled.input`
   background: white;

@@ -20,7 +20,7 @@ export function Form() {
       <Frame>
         <Icon src={Round} alt='round-icon' />
         <PlayerScore>
-          {dashboard.player1 && playerScore.firstPlayer} -
+          {playerScore.firstPlayer && playerScore.firstPlayer} -
         </PlayerScore>
         <Input
           type='text'
@@ -32,7 +32,7 @@ export function Form() {
       <Frame>
         <Icon src={Cross} alt='cross-icon' />
         <PlayerScore>
-          {dashboard.player2 && playerScore.secondPlayer} -
+          {playerScore.secondPlayer && playerScore.secondPlayer} -
         </PlayerScore>
         <Input
           type='text'

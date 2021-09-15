@@ -16,9 +16,12 @@ export const timeSlice = createSlice({
     timeLimit: (state, action: PayloadAction<any>) => {
       state.timeRestriction = action.payload
     },
+    startTimer: (state) => {
+      state.timeRestriction -= 1
+    },
   },
 })
 
-export const { timeLimit } = timeSlice.actions
+export const { timeLimit, startTimer } = timeSlice.actions
 export const selectTime = (state: RootState) => state.time
 export default timeSlice.reducer
