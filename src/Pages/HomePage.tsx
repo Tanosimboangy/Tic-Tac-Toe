@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { Form } from '../Components/Form'
-import { selectPlayers } from '../Slices/playersSlice'
+// import { selectPlayers } from '../Slices/playersSlice'
 import { selectTime, timeLimit, startTimer } from '../Slices/timeSlice'
 import { useAppSelector, useAppDispatch } from '../app/hooks'
 import {
@@ -16,15 +16,13 @@ import {
 export function HomePage() {
   const dispatch = useAppDispatch()
   const time = useAppSelector(selectTime)
-  const dashboard = useAppSelector(selectPlayers)
+  // const dashboard = useAppSelector(selectPlayers)
 
   function TimeCountDown() {
-    let timer = 0
-    clearInterval(timer)
     var clearTimer = setInterval(() => {
-      dispatch(startTimer())
-      if (time.timeRestriction >= 0) {
+      if (time.timeRestriction > 0) {
         clearInterval(clearTimer)
+        dispatch(startTimer())
       }
     }, 1000)
   }

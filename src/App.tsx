@@ -4,10 +4,8 @@ import './App.css'
 import styled from 'styled-components'
 import { HomePage } from './Pages/HomePage'
 import { BoardPage } from './Pages/BoardPage'
-// import { RebootPage } from './Pages/RebootPage'
 
 const Container = styled.article`
-  font-family: Usuazi Hosomozi;
   font-style: normal;
   font-weight: normal;
   background: white;
@@ -22,12 +20,13 @@ const Container = styled.article`
   }
 `
 const Title = styled.h1`
+  font-family: Usuazi Hosomozi;
   font-size: 72px;
   line-height: 72px;
   color: #000000;
   @media (max-width: 760px) {
-    font-size: 32px;
-    line-height: 32px;
+    font-size: 48px;
+    line-height: 48px;
   }
 `
 
@@ -44,9 +43,6 @@ function App() {
             <Route exact path='/dashboard'>
               <BoardPage />
             </Route>
-            {/* <Route exact path='/reboot'>
-              <RebootPage />
-            </Route> */}
           </Switch>
         </Router>
       </Container>
