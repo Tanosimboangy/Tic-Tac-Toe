@@ -54,10 +54,14 @@ export function BoardPage() {
       dispatch(secondPlayerScore())
     } else if (Winner === dashboard.player1) {
       dispatch(firstPlayerScore())
+      console.log(Winner)
+      console.log(dashboard.player2)
     } else if (Winner === dashboard.player2) {
+      console.log(Winner)
+      console.log(dashboard.player1)
       dispatch(secondPlayerScore())
     }
-  }, [win, dispatch])
+  }, [win, dispatch, Winner])
 
   useEffect(() => {
     const interval = setInterval(() => {
