@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import playersReducer from '../Slices/playersSlice'
 import boardReducer from '../Slices/boardSlice'
 import timeReducer from '../Slices/timeSlice'
+import restartGameReducer from '../Slices/restartGame'
 import playersScoreReducer from '../Slices/playersScoreSlice'
 import counterReducer from '../Components/counter/counterSlice'
 
@@ -12,6 +13,7 @@ export const store = configureStore({
     time: timeReducer,
     playersScore: playersScoreReducer,
     board: boardReducer,
+    restart: restartGameReducer,
   },
 })
 

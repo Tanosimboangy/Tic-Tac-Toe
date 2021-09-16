@@ -21,9 +21,14 @@ export const playersScoreSlice = createSlice({
     secondPlayerScore: (state) => {
       state.secondPlayer += 1
     },
+    rebootPlayersScore: (state) => {
+      state.firstPlayer = 0
+      state.secondPlayer = 0
+    },
   },
 })
 
-export const { firstPlayerScore, secondPlayerScore } = playersScoreSlice.actions
+export const { firstPlayerScore, secondPlayerScore, rebootPlayersScore } =
+  playersScoreSlice.actions
 export const selectPlayersScore = (state: RootState) => state.playersScore
 export default playersScoreSlice.reducer

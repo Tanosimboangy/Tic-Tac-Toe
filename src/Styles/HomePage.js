@@ -132,3 +132,9 @@ export const StartBtn = styled.button`
     line-height: 24px;
   }
 `
+export const Btnwrapper = styled.div`
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+`

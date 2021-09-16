@@ -21,9 +21,13 @@ export const playersSlice = createSlice({
     secondPlayer: (state, action: PayloadAction<any>) => {
       state.player2 = action.payload
     },
+    rebootPlayers: (state) => {
+      state.player1 = ''
+      state.player2 = ''
+    },
   },
 })
 
-export const { firstPlayer, secondPlayer } = playersSlice.actions
+export const { firstPlayer, secondPlayer, rebootPlayers } = playersSlice.actions
 export const selectPlayers = (state: RootState) => state.players
 export default playersSlice.reducer
