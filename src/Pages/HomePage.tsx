@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Form } from '../Components/Form'
-// import { selectPlayers } from '../Slices/playersSlice'
 import { selectTime, timeLimit } from '../Slices/timeSlice'
 import { useAppSelector, useAppDispatch } from '../app/hooks'
 import {
@@ -16,7 +15,6 @@ import {
 export function HomePage() {
   const dispatch = useAppDispatch()
   const time = useAppSelector(selectTime)
-  // const dashboard = useAppSelector(selectPlayers)
 
   return (
     <Wrapper>

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Board from '../Components/Board'
 import { Link } from 'react-router-dom'
-import { TimeUnit } from '../Styles/HomePage'
 import { calculateWinner } from '../helper'
-import { selectTime, startTimer } from '../Slices/timeSlice'
 import { selectBoard } from '../Slices/boardSlice'
+import { Time, TimeText } from '../Styles/HomePage'
 import { selectPlayers } from '../Slices/playersSlice'
+import { selectTime, startTimer, restartTimer } from '../Slices/timeSlice'
 import { useAppSelector, useAppDispatch } from '../app/hooks'
-import { Time, TimeText, TimeValue } from '../Styles/HomePage'
 import { Container, SubTitle, RestartBtn } from '../Styles/BoardPage'
 import {
   firstPlayerScore,
@@ -35,6 +34,7 @@ export function BoardPage() {
     setStep(historyPoint.length)
     setXNext(!xNext)
     setHistoryState([...historyPoint, squares])
+    dispatch(restartTimer())
   }
 
   useEffect(() => {
@@ -57,16 +57,23 @@ export function BoardPage() {
   const Turn = XO === 'X' ? dashboard.player1 : dashboard.player2
   const Winner = win === 'X' ? dashboard.player1 : dashboard.player2
   const won = win === null ? `${Turn}'s turn'` : `${Winner} won`
+  const IsDraw =
+    historyState.length - 1 === 9 && win === null ? 'Draw !' : `${won}`
+  const winByTime = XO !== 'X' ? dashboard.player1 : dashboard.player2
 
   return (
     <Container>
       <SubTitle>
-        {historyState.length - 1 === 9 && win === null ? 'Draw !' : `${won}`}
+        {time.timeRestriction === 0
+          ? `Time out - ${winByTime} won`
+          : `${IsDraw}`}
       </SubTitle>
       <Board squares={historyState[step]} onClick={handleClick} />
-      {time.timeRestriction === 0 ? (
+      {time.timeRestriction === 0 || win !== null || IsDraw === 'Draw !' ? (
         <Link to='/'>
-          <RestartBtn>Restart</RestartBtn>
+          <RestartBtn onClick={() => dispatch(restartTimer())}>
+            Restart
+          </RestartBtn>
         </Link>
       ) : (
         <Time>
