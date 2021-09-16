@@ -6,7 +6,7 @@ export interface TimeState {
 }
 
 const initialState: TimeState = {
-  timeRestriction: 0,
+  timeRestriction: 3,
 }
 
 export const timeSlice = createSlice({

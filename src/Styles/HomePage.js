@@ -13,7 +13,7 @@ export const Icon = styled.img`
   width: 44px;
   height: 44px;
   position: absolute;
-  top: 14px;
+  top: 20px;
   left: 10px;
   @media (max-width: 760px) {
     width: 30px;
@@ -27,7 +27,7 @@ export const Input = styled.input`
   background: white;
   border: none;
   outline: none;
-  padding: 16px 10px 16px 110px;
+  padding: 16px 10px 16px 123px;
   cursor: pointer;
   border-radius: 5px;
   font-size: 48px;
@@ -96,10 +96,11 @@ export const TimeValue = styled.input`
   line-height: 20px;
   font-size: 48px;
   line-height: 48px;
-  max-width: 24px;
+  max-width: 50px;
   @media (max-width: 760px) {
     font-size: 24px;
     line-height: 24px;
+    max-width: 24px;
   }
 `
 export const TimeUnit = styled.span`

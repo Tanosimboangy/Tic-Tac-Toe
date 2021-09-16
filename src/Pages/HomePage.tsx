@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Form } from '../Components/Form'
 // import { selectPlayers } from '../Slices/playersSlice'
@@ -18,14 +18,15 @@ export function HomePage() {
   const time = useAppSelector(selectTime)
   // const dashboard = useAppSelector(selectPlayers)
 
-  function TimeCountDown() {
-    var clearTimer = setInterval(() => {
+  useEffect(() => {
+    const interval = setInterval(() => {
       if (time.timeRestriction > 0) {
-        clearInterval(clearTimer)
-        dispatch(startTimer())
+        dispatch(startTimer)
       }
     }, 1000)
-  }
+
+    return () => clearInterval(interval)
+  }, [time.timeRestriction])
 
   return (
     <Wrapper>
@@ -40,16 +41,10 @@ export function HomePage() {
         <TimeUnit>s</TimeUnit>
       </Time>
       <Link to='/dashboard'>
-        <StartBtn onClick={TimeCountDown} type='button'>
+        <StartBtn onClick={() => dispatch(startTimer)} type='button'>
           Start
         </StartBtn>
       </Link>
     </Wrapper>
   )
 }
-
-// const timeSet = time.timeRestriction > 0 && setInterval(() => timeLimit(time.timeRestriction - 1), 1000))
-// return () => clearInterval(timeSet)
-// useEffect(() => {
-//   // TimeCountDown()
-// }, [time])

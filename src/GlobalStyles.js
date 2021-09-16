@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
     html, body {
+        font-family: 'Usuazi_hosomozi';
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: antialiased;
         background: #FFFFFF;

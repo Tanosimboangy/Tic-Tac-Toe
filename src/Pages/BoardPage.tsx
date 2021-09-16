@@ -3,7 +3,7 @@ import Board from '../Components/Board'
 import { Link } from 'react-router-dom'
 import { TimeUnit } from '../Styles/HomePage'
 import { calculateWinner } from '../helper'
-import { selectTime } from '../Slices/timeSlice'
+import { selectTime, startTimer } from '../Slices/timeSlice'
 import { selectBoard } from '../Slices/boardSlice'
 import { selectPlayers } from '../Slices/playersSlice'
 import { useAppSelector, useAppDispatch } from '../app/hooks'
@@ -35,6 +35,7 @@ export function BoardPage() {
     setStep(historyPoint.length)
     setXNext(!xNext)
     setHistoryState([...historyPoint, squares])
+    console.log(historyState.length)
   }
 
   useEffect(() => {
@@ -45,15 +46,29 @@ export function BoardPage() {
     }
   }, [win])
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (time.timeRestriction > 0) {
+        dispatch(startTimer())
+      }
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [time.timeRestriction, xNext])
+
   const Turn = XO === 'X' ? dashboard.player1 : dashboard.player2
   const Winner = win === 'X' ? dashboard.player1 : dashboard.player2
+  const won = win === null ? `${Turn}'s turn'` : `${Winner} won`
 
   return (
     <Container>
-      <SubTitle>{win === null ? `${Turn}'s turn'` : `${Winner} won`}</SubTitle>
+      <SubTitle>
+        {historyState.length - 1 === 9 && win === null ? 'Draw !' : `${won}`}
+      </SubTitle>
       <Board squares={historyState[step]} onClick={handleClick} />
       {time.timeRestriction === 0 ? (
-        ''
+        <Link to='/'>
+          <RestartBtn>Restart</RestartBtn>
+        </Link>
       ) : (
         <Time>
           <TimeText>Time left:</TimeText>
@@ -65,20 +80,6 @@ export function BoardPage() {
           <TimeUnit>s</TimeUnit>
         </Time>
       )}
-      <Link to='/'>
-        <RestartBtn>Restart</RestartBtn>
-      </Link>
     </Container>
   )
 }
-
-// const [timeValue, setTimeValue] = useState(6)
-// function TimeCountDown() {
-//   console.log(timeValue)
-//   const timeLimit =
-//     timeValue > 0 && setInterval(() => setTimeValue(timeValue - 1), 1000)
-//   return () => clearInterval(timeLimit)
-// }
-// useEffect(() => {
-//   TimeCountDown()
-// }, [timeValue])

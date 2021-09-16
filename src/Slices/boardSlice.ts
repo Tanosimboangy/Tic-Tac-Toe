@@ -1,15 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../app/store'
-import { calculateWinner } from '../helper'
-
-// history: Array<any>
 
 export interface BoardState {
   history: any
   stepNumber: any
   xIsNext: any
-  winner: any
   xO: any
+  winner: any
 }
 
 const initialState: BoardState = {
