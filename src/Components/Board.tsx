@@ -17,7 +17,7 @@ const BoardContainer = styled.div`
   height: 300px;
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-  gap: 4px;
+  gap: 3px;
   margin-bottom: 30px;
 `
 const SquareBtn = styled.button<SquaresProps>`

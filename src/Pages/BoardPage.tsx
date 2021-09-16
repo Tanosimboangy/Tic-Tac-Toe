@@ -35,7 +35,6 @@ export function BoardPage() {
     setStep(historyPoint.length)
     setXNext(!xNext)
     setHistoryState([...historyPoint, squares])
-    console.log(historyState.length)
   }
 
   useEffect(() => {
@@ -44,7 +43,7 @@ export function BoardPage() {
     } else if (win === 'O') {
       dispatch(secondPlayerScore())
     }
-  }, [win])
+  }, [win, dispatch])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -53,7 +52,7 @@ export function BoardPage() {
       }
     }, 1000)
     return () => clearInterval(interval)
-  }, [time.timeRestriction, xNext])
+  }, [time.timeRestriction, dispatch])
 
   const Turn = XO === 'X' ? dashboard.player1 : dashboard.player2
   const Winner = win === 'X' ? dashboard.player1 : dashboard.player2
@@ -71,13 +70,7 @@ export function BoardPage() {
         </Link>
       ) : (
         <Time>
-          <TimeText>Time left:</TimeText>
-          <TimeValue
-            type='number'
-            onChange={() => ''}
-            value={time.timeRestriction}
-          />
-          <TimeUnit>s</TimeUnit>
+          <TimeText>Time left: {time.timeRestriction} s</TimeText>
         </Time>
       )}
     </Container>

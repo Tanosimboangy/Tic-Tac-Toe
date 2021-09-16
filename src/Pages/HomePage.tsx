@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { Form } from '../Components/Form'
 // import { selectPlayers } from '../Slices/playersSlice'
-import { selectTime, timeLimit, startTimer } from '../Slices/timeSlice'
+import { selectTime, timeLimit } from '../Slices/timeSlice'
 import { useAppSelector, useAppDispatch } from '../app/hooks'
 import {
   Wrapper,
@@ -18,16 +18,6 @@ export function HomePage() {
   const time = useAppSelector(selectTime)
   // const dashboard = useAppSelector(selectPlayers)
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (time.timeRestriction > 0) {
-        dispatch(startTimer)
-      }
-    }, 1000)
-
-    return () => clearInterval(interval)
-  }, [time.timeRestriction])
-
   return (
     <Wrapper>
       <Form />
@@ -41,9 +31,7 @@ export function HomePage() {
         <TimeUnit>s</TimeUnit>
       </Time>
       <Link to='/dashboard'>
-        <StartBtn onClick={() => dispatch(startTimer)} type='button'>
-          Start
-        </StartBtn>
+        <StartBtn type='button'>Start</StartBtn>
       </Link>
     </Wrapper>
   )
