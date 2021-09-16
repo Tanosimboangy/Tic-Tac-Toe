@@ -14,13 +14,13 @@ const Container = styled.article`
   max-width: 60%;
   margin: auto;
   padding-block-end: 40px;
+  padding-top: 40px;
   @media (max-width: 760px) {
     max-width: 90%;
     margin: auto;
   }
 `
 const Title = styled.h1`
-  font-family: Usuazi Hosomozi;
   font-size: 72px;
   line-height: 72px;
   color: #000000;

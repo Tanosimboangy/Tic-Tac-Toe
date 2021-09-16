@@ -1,12 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
-    @font-face {
-        font-family: "usuazi_hosomozi";
-        src: local(usuazi_hosomozi), 
-        url(./Font/usuazi_hosomozi.woff2) format("woff2"), 
-        url(./Font/usuazi_hosomozi.woff) format("woff"), 
-    }
     html, body {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: antialiased;

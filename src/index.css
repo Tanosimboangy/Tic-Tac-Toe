@@ -1,8 +1,24 @@
-body {
+@font-face {
+  font-family: 'usuazi_hosomozi';
+  src: url(./Font/usuazi_hosomozi.woff2) format('woff2'),
+    url(./Font/usuazi_hosomozi.woff) format('woff');
+}
+
+html,
+body,
+button,
+input,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+div {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: usuazi_hosomozi;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
